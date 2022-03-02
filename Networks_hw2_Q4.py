@@ -6,27 +6,17 @@ import matplotlib.pyplot as plt
 
 def average_degree(G):
     node_degree = []
-    averageDegree = []
-    for n in range(1,30):
-        for i in G.nodes():
-            node_degree.append(G.degree(i))
-            average_deg = statistics.mean(node_degree)
-        averageDegree.append(average_deg)
-    return statistics.mean(averageDegree)
+    for i in G.nodes():
+        node_degree.append(G.degree(i))
+        average_deg = statistics.mean(node_degree)
+    return average_deg
 
 def average_clustering(G):
-    averageClustering = []
-    for n in range(1,30):
-        clustering = nx.algorithms.cluster.average_clustering(G)
-        averageClustering.append(clustering)
-    return statistics.mean(averageClustering)
+    clustering = nx.algorithms.cluster.average_clustering(G)
+    return clustering
 
-def average_path_length(G):
-    averagePathLenght = []
-    for n in range(1,30):
-        path_length = nx.average_shortest_path_length(G)
-        averagePathLenght.append(path_length)    
-    return statistics.mean(averagePathLenght)
+def average_path_length(G):  
+    return (nx.average_shortest_path_length(G))
 
 def Degree_distribution(G):
     degrees_dict = {}
@@ -46,11 +36,22 @@ def Degree_distribution(G):
 
 
 def inputs(n,p):
+    averageDegree = []
+    averageClustering = []
+    averagePathLenght = []
+    for i in range(1,30):
         G = nx.erdos_renyi_graph(n, p)
-        print( "The average degree of n" , n ,"and p" ,p ,": ", average_degree(G))
-        print( "Average clustering coefficient of n" , n ,"and p" , p ,": " , average_clustering(G))
-        print( "The average path length of n" ,n ,"and p" ,p ,": " , average_path_length(G))
-        print( "Degree Distribution of n" ,n ,"and p" ,p ,": " , Degree_distribution(G))
+        avgdeg=average_degree(G)
+        avgclus=average_clustering(G)
+        apl=average_path_length(G)
+        averageDegree.append(avgdeg)
+        averageClustering.append(avgclus)
+        averagePathLenght.append(apl)
+        
+    print( "The average degree of n=" , n ,"and p=" ,p ,": ", statistics.mean(averageDegree))
+    print( "Average clustering coefficient of n=" , n ,"and p=" , p ,": " , statistics.mean(averageClustering))
+    print( "The average path length of n=" ,n ,"and p=" ,p ,": " , statistics.mean(averagePathLenght))
+    print( "Degree Distribution of n=" ,n ,"and p=" ,p ,": " , statistics.mean(Degree_distribution(G)))
             
 
 inputs(100, 0.2)

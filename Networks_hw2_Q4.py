@@ -51,7 +51,7 @@ def inputs(n,p):
     print( "The average degree of n=" , n ,"and p=" ,p ,": ", statistics.mean(averageDegree))
     print( "Average clustering coefficient of n=" , n ,"and p=" , p ,": " , statistics.mean(averageClustering))
     print( "The average path length of n=" ,n ,"and p=" ,p ,": " , statistics.mean(averagePathLenght))
-    print( "Degree Distribution of n=" ,n ,"and p=" ,p ,": " , statistics.mean(Degree_distribution(G)))
+    print( "Degree Distribution of n=" ,n ,"and p=" ,p ,": " , Degree_distribution(G))
             
 
 inputs(100, 0.2)
